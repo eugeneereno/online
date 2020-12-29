@@ -48,6 +48,8 @@ L.Control.UIManager = L.Control.extend({
 		}
 
 		setupToolbar(this.map);
+		this.hideMenubar();
+		this.hideStatusBar(true);
 
 		this.map.addControl(L.control.documentNameInput());
 		this.map.addControl(L.control.scroll());

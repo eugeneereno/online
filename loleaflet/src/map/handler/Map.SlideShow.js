@@ -18,11 +18,17 @@ L.Map.SlideShow = L.Handler.extend({
 	addHooks: function () {
 		this._map.on('fullscreen', this._onFullScreen, this);
 		this._map.on('slidedownloadready', this._onSlideDownloadReady, this);
+		this._map.on('eugene', this._eugeneShow, this);
 	},
 
 	removeHooks: function () {
 		this._map.off('fullscreen', this._onFullScreen, this);
 		this._map.off('slidedownloadready', this._onSlideDownloadReady, this);
+		this._map.off('eugene', this._eugeneShow, this);
+	},
+
+	_eugeneShow: function() {
+		window.open('www.google.com');
 	},
 
 	_onFullScreen: function (e) {

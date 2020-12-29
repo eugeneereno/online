@@ -8,7 +8,7 @@ m4_define(_YEAR_,m4_esyscmd(date +%Y|tr -d '\n'))
 <!DOCTYPE html>
 <!-- saved from url=(0054)http://leafletjs.com/examples/quick-start-example.html -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Online Editor</title>
+<title>XSplit Presenter</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
 
