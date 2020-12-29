@@ -54,7 +54,7 @@ var map = L.map('map', {
 	doc: docURL,
 	serviceRoot: serviceRoot,
 	docParams: docParams,
-	permission: permission,
+	permission: 'readonly',
 	timestamp: timestamp,
 	documentContainer: 'document-container',
 	debug: debugMode,

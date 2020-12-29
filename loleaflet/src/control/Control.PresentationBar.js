@@ -3,7 +3,7 @@
  * L.Control.PresentationBar
  */
 
-/* global $ w2ui _ _UNO vex */
+/* global $ w2ui _ vex */
 L.Control.PresentationBar = L.Control.extend({
 	options: {
 		shownavigation: true
@@ -30,11 +30,12 @@ L.Control.PresentationBar = L.Control.extend({
 			hidden: true,
 			items: [
 				{type: 'html',  id: 'left'},
-				{type: 'button',  id: 'presentation', img: 'presentation', hidden:true, hint: _('Fullscreen presentation')},
-				{type: 'break', id: 'presentationbreak', hidden:true},
-				{type: 'button',  id: 'insertpage', img: 'insertpage', hint: _UNO('.uno:TaskPaneInsertPage', 'presentation')},
-				{type: 'button',  id: 'duplicatepage', img: 'duplicatepage', hint: _UNO('.uno:DuplicateSlide', 'presentation')},
-				{type: 'button',  id: 'deletepage', img: 'deletepage', hint: _UNO('.uno:DeleteSlide', 'presentation')},
+				{type: 'button',  id: 'presentation', img: 'presentation', hidden:true, hint: _('Present')},
+				{type: 'button',  id: 'insertpage', img: 'insertpage', hidden:true, hint: _('Present Here')},
+				// {type: 'break', id: 'presentationbreak', hidden:true},
+				// {type: 'button',  id: 'insertpage', img: 'insertpage', hint: _UNO('.uno:TaskPaneInsertPage', 'presentation')},
+				// {type: 'button',  id: 'duplicatepage', img: 'duplicatepage', hint: _UNO('.uno:DuplicateSlide', 'presentation')},
+				// {type: 'button',  id: 'deletepage', img: 'deletepage', hint: _UNO('.uno:DeleteSlide', 'presentation')},
 				{type: 'html',  id: 'right'}
 			],
 			onClick: function (e) {
@@ -75,7 +76,8 @@ L.Control.PresentationBar = L.Control.extend({
 			this.map.fire('fullscreen');
 		}
 		else if (id === 'insertpage') {
-			this.map.insertPage();
+			// this.map.insertPage();
+			this.map.fire('eugene');
 		}
 		else if (id === 'duplicatepage') {
 			this.map.duplicatePage();
@@ -104,7 +106,7 @@ L.Control.PresentationBar = L.Control.extend({
 		case 'presentation':
 			var presentationToolbar = w2ui['presentation-toolbar'];
 			if (!this.map['wopi'].HideExportOption && presentationToolbar) {
-				presentationToolbar.show('presentation', 'presentationbreak');
+				presentationToolbar.show('presentation', 'presentationbreak', 'insertpage');
 			}
 
 			// FALLTHROUGH intended
