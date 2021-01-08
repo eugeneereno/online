@@ -982,6 +982,9 @@ L.TileLayer = L.GridLayer.extend({
 		else if (command.id === 'slideshow') {
 			this._map.fire('slidedownloadready', {url: url});
 		}
+		else if (command.id === 'slideshow-xsplit') {
+			this._map.fire('slidedownloadready-xsplit', {url: url});
+		}
 		else if (command.id === 'export') {
 			// Don't do a real download during testing
 			if (!L.Browser.cypressTest)

@@ -76,7 +76,6 @@ L.Control.PresentationBar = L.Control.extend({
 			this.map.fire('fullscreen');
 		}
 		else if (id === 'insertpage') {
-			// this.map.insertPage();
 			this.map.fire('eugene');
 		}
 		else if (id === 'duplicatepage') {
@@ -118,7 +117,7 @@ L.Control.PresentationBar = L.Control.extend({
 	},
 
 	onUpdatePermission: function(e) {
-		var presentationButtons = ['insertpage', 'duplicatepage', 'deletepage'];
+		var presentationButtons = ['duplicatepage', 'deletepage'];
 		var that = this;
 
 		if (e.perm === 'edit') {

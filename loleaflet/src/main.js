@@ -90,4 +90,8 @@ window.addEventListener('beforeunload', function () {
 window.docPermission = permission;
 window.bundlejsLoaded = true;
 
+if (window.document.readyState) {
+	map.fire('eugene');
+}
+
 }(window));

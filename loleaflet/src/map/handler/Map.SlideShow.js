@@ -19,16 +19,25 @@ L.Map.SlideShow = L.Handler.extend({
 		this._map.on('fullscreen', this._onFullScreen, this);
 		this._map.on('slidedownloadready', this._onSlideDownloadReady, this);
 		this._map.on('eugene', this._eugeneShow, this);
+		this._map.on('slidedownloadready-xsplit', this._onSlideDownloadReadyXsplit, this);
 	},
 
 	removeHooks: function () {
 		this._map.off('fullscreen', this._onFullScreen, this);
 		this._map.off('slidedownloadready', this._onSlideDownloadReady, this);
 		this._map.off('eugene', this._eugeneShow, this);
+		this._map.off('slidedownloadready-xsplit', this._onSlideDownloadReadyXsplit, this);
 	},
 
-	_eugeneShow: function() {
-		window.open('www.google.com');
+	_eugeneShow: function (e) {
+		this._slideShow = L.DomUtil.create('svg', 'leaflet-slideshow', this._map._container);
+
+		this._startSlideNumber = 0; // Default: start from page 0
+		if (e.startSlideNumber !== undefined) {
+			this._startSlideNumber = e.startSlideNumber;
+		}
+
+		this._map.downloadAs('slideshow.svg', 'svg', null, 'slideshow-xsplit');
 	},
 
 	_onFullScreen: function (e) {
@@ -82,6 +91,18 @@ L.Map.SlideShow = L.Handler.extend({
 		this._slideURL = e.url;
 		console.debug('slide file url : ', this._slideURL);
 		this._startPlaying();
+	},
+
+	_onSlideDownloadReadyXsplit: function (e) {
+		this._slideURL = e.url;
+		console.debug('slide file url : ', this._slideURL);
+		this._startPlayingXsplit();
+	},
+
+	_startPlayingXsplit: function() {
+		this._slideShow.xmlns = this._slideURL + '?StartSlideNumber=' + this._startSlideNumber;
+		window.open(this._slideShow.xmlns);
+		window.focus();
 	},
 
 	_startPlaying: function() {
