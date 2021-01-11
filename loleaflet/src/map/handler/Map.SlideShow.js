@@ -101,8 +101,12 @@ L.Map.SlideShow = L.Handler.extend({
 
 	_startPlayingXsplit: function() {
 		this._slideShow.xmlns = this._slideURL + '?StartSlideNumber=' + this._startSlideNumber;
-		window.open(this._slideShow.xmlns);
-		window.focus();
+
+		var postMessageObj = {
+			Url: this._slideShow.xmlns
+		};
+
+		this._map.fire('postMessage', {msgId: 'XSplit_Resp', args: postMessageObj});
 	},
 
 	_startPlaying: function() {

@@ -76,7 +76,7 @@ L.Control.PresentationBar = L.Control.extend({
 			this.map.fire('fullscreen');
 		}
 		else if (id === 'insertpage') {
-			this.map.fire('eugene');
+			this.map.fire('eugene', {startSlideNumber: this.map.getCurrentPartNumber()});
 		}
 		else if (id === 'duplicatepage') {
 			this.map.duplicatePage();

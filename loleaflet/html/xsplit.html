@@ -23,6 +23,27 @@
         }
     </style>
 
+    <script>
+        function receiveMessage(event) {
+            console.debug('==== xsplit.html receiveMessage: ' + event.data);
+
+            var msg = JSON.parse(event.data);
+            if (!msg) {
+                return;
+            }
+
+            if (msg.MessageId == 'XSplit_Resp') {
+               if (msg.Values) {
+                    console.debug(msg.Values.Url);
+                    window.open(msg.Values.Url);
+                    window.focus();
+               }
+            }
+        }
+
+        window.addEventListener("message", receiveMessage, false);
+    </script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -30,12 +51,28 @@
 
     <body>
         <div id="content">
-            <iframe id='myframe'
-                    src='https://192.168.0.34:9980/loleaflet/7f6cacb18/loleaflet.html?file_path=file:///home/eugene/collabora-online/test/data/xsplit.pptx' 
+            <iframe id='doc-frame'
                     width='100%' 
                     height='100%'
                     frameborder='0'>
             </iframe>
         </div>
     </body>
+
+    <script>
+        if (document.location.protocol == 'file:' || window.location.search == '') {
+            document.getElementById("usage").style.display = "block";
+            alert('Incorrect usage, please follow the instructions at the top of this page.');
+        }
+
+        var query = '?';
+        if (window.location.search !== '')
+            query = window.location.search + '&';
+        query += 'NotWOPIButIframe=true';
+
+        var path = window.location.pathname.substr(0, window.location.pathname.lastIndexOf('/') + 1) + 'loleaflet.html';
+        var uriBase = window.location.protocol + '//' + window.location.host + path + query;
+        var iframe = document.getElementById("doc-frame");
+        iframe.src = uriBase;
+    </script>
 </html>

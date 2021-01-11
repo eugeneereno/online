@@ -27,7 +27,8 @@ var filePath = getParameterByName('file_path');
 var permission = getParameterByName('permission') || 'edit';
 var timestamp = getParameterByName('timestamp');
 // Should the document go inactive or not
-var alwaysActive = getParameterByName('alwaysactive');
+// var alwaysActive = getParameterByName('alwaysactive');
+var alwaysActive = true;
 // Loleaflet Debug mode
 var debugMode = getParameterByName('debug');
 if (wopiSrc === '' && filePath === '' && !window.ThisIsAMobileApp) {
@@ -89,9 +90,5 @@ window.addEventListener('beforeunload', function () {
 
 window.docPermission = permission;
 window.bundlejsLoaded = true;
-
-if (window.document.readyState) {
-	map.fire('eugene');
-}
 
 }(window));
